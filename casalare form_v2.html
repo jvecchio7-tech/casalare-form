@@ -147,13 +147,6 @@
             <option>Rice Crumbs</option>
             <option>Other</option>
           </select>
-          <label>Estimated Order Volume</label>
-          <select>
-            <option>Small</option>
-            <option>Medium</option>
-            <option>Large</option>
-            <option>Not sure yet</option>
-          </select>
           <label>Message*</label>
           <textarea required></textarea>
           <button type="submit">Submit</button>
@@ -180,10 +173,7 @@
         allHeaders.forEach(s => s.textContent = '+');
 
         // Open clicked one
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-          header.querySelector('span').textContent = '+';
-        } else {
+        if (!content.style.maxHeight) {
           content.style.maxHeight = content.scrollHeight + "px";
           content.classList.add('active');
           header.querySelector('span').textContent = '–';
