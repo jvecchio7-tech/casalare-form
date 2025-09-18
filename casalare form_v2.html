@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion Contact Form</title>
+  <style>
+    body {
+      background: #f3f2ed;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+
+    .accordion {
+      max-width: 700px;
+      margin: auto;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid #ddd;
+    }
+
+    .accordion-header {
+      background: #fafafa;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .accordion-header:hover {
+      background: #f0e8df;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      background: #fff;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .accordion-content.active {
+      padding: 1.5rem;
+    }
+
+    /* Shared form styling */
+    form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.4rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    form button {
+      margin-top: 1.2rem;
+      padding: 0.8rem 1.2rem;
+      background: #d4a373;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #b77f4d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact Us</h1>
+
+  <div class="accordion">
+
+    <!-- Option 1 -->
+    <div class="accordion-item">
+      <div class="accordion-header">General Enquiry <span>+</span></div>
+      <div class="accordion-content">
+        <form>
+          <label>Name*</label>
+          <input type="text" required>
+          <label>Email*</label>
+          <input type="email" required>
+          <label>Phone (optional)</label>
+          <input type="tel">
+          <label>Company Name (optional)</label>
+          <input type="text">
+          <label>Message*</label>
+          <textarea required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="accordion-item">
+      <div class="accordion-header">Wholesale Enquiry <span>+</span></div>
+      <div class="accordion-content">
+        <form>
+          <label>Contact Person*</label>
+          <input type="text" required>
+          <label>Business Name*</label>
+          <input type="text" required>
+          <label>Email*</label>
+          <input type="email" required>
+          <label>Phone Number*</label>
+          <input type="tel" required>
+          <label>Country / Region*</label>
+          <input type="text" required>
+          <label>Products of Interest</label>
+          <select>
+            <option>Pasta Range</option>
+            <option>Gluten-Free Flours</option>
+            <option>Rice Crumbs</option>
+            <option>Other</option>
+          </select>
+          <label>Estimated Order Volume</label>
+          <select>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>Not sure yet</option>
+          </select>
+          <label>Message*</label>
+          <textarea required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const headers = document.querySelectorAll('.accordion-header');
+
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const allContents = document.querySelectorAll('.accordion-content');
+        const allHeaders = document.querySelectorAll('.accordion-header span');
+
+        // Close all
+        allContents.forEach(c => {
+          c.style.maxHeight = null;
+          c.classList.remove('active');
+        });
+        allHeaders.forEach(s => s.textContent = '+');
+
+        // Open clicked one
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          header.querySelector('span').textContent = '+';
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.classList.add('active');
+          header.querySelector('span').textContent = '–';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
